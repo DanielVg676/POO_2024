@@ -1,7 +1,8 @@
-paises=["Mexico","USA","Brasil","Japon"]
-numeros=[23,24,12,12.56,0.100]
-texto=["Hola",True,23,3.1416]
 
+paises=["Mexico","USA","Brasil","Japon"]
+numeros=[23,24,12,12.56,0.100,23]
+texto=["Hola",True,23,3.1416]
+"""
 
 # Ordenar una lista
 print(paises)
@@ -27,4 +28,36 @@ print(numeros)
 numeros.remove(23)   #  Para que no de error hay que poner un poner un elemnto a eliminar que se encuentre en la lista si no va dar error
 print(numeros)
 numeros.pop(0)       # Para eliminar un elemnto en una posicion debemos de usar pop, da error si no hay nada en la posicion ingresada
+print(numeros)
+"""
+
+# Dar la vuelta a una lista
+
+print(numeros)
+numeros.reverse()
+print(numeros)
+
+# Buscar algo dentro de una lista
+
+respuesta="brasil" in paises
+print(respuesta)
+
+#Cuantas veces aparece un valor dentro de la lista
+
+print(numeros)
+numeros.append(23)
+cuantos=numeros.count(23)
+print(f"El numero 23 se encontro: {cuantos} veces")
+
+# Unir listas
+
+print(paises)
+paises.extend(numeros)
+print(paises)
+
+
+# Para vaciar una lista
+
+print(numeros)
+numeros.clear()
 print(numeros)
