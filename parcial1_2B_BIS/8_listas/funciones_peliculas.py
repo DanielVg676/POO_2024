@@ -56,3 +56,4 @@ def consultarPelicula():
         print(f"No se encuentra la película {pelicula}")
     esperaTecla()
         
+

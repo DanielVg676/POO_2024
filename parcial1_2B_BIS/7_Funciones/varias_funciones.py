@@ -23,3 +23,5 @@ def getCalculadora(num1,num2,operacion):
 def esperaTecla():
         print("Presione cualquier tecla para continuar")
         input()
+
+        
