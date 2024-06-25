@@ -105,7 +105,7 @@ def consultarPelicula():
     esperaTecla()
         
 def vaciar():
-    peliculas.clear
+    peliculas.clear()
     print("Se ha limpiado el sistema")
 
 def actualizar():
