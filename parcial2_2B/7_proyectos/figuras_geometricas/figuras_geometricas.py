@@ -30,7 +30,8 @@ class Figuras:
         self.figura = figura
 
     def estaVisible(self):
-        print(f"La figura {self.figura} es {self.visible}")
+        estado = True if self.visible else "no visible"
+        print(f"La figura {self.figura} es {estado}")
 
     def mostrar(self):
         print(f"La figura {self.figura} está siendo mostrada")
@@ -49,20 +50,20 @@ class Figuras:
 class Rectangulos(Figuras):
     def __init__(self, x, y, visible, figura, alto, ancho):
         super().__init__(x, y, visible, figura)
-        self.alto = alto
-        self.ancho = ancho
+        self.__alto = alto
+        self.__ancho = ancho
 
     def getalto(self):
-        return self.alto
+        return self.__alto
 
     def setalto(self, alto):
-        self.alto = alto
+        self.__alto = alto
 
     def getancho(self):
-        return self.ancho
+        return self.__ancho
 
     def setancho(self, ancho):
-        self.ancho = ancho
+        self.__ancho = ancho
 
     def ocultar(self):
         print(f"El rectángulo {self.figura} está siendo ocultado")
@@ -71,16 +72,22 @@ class Rectangulos(Figuras):
         print(f"El rectángulo {self.figura} está siendo mostrado")
 
     def calcularArea(self):
-        return self.alto * self.ancho
+        return self.__alto * self.__ancho
 
     def getInfo(self):
-        print(f"x = {self.x()}, y={self.y()}, visible = {self.visibiliada()}, figura = {self.figura()}, alto = {self.alto()}, ancho = {self.ancho()}")
-        
+        print(f"x = {self.getx()}, y = {self.gety()}, visible = {self.getvisible()}, figura = {self.getfigura()}, alto = {self.getalto()}, ancho = {self.getancho()}")
+
 
 class Circulos(Figuras):
     def __init__(self, x, y, visible, figura, radio):
         super().__init__(x, y, visible, figura)
-        self.radio = radio
+        self.__radio = radio
+
+    def getradio(self):
+        return self.__radio
+
+    def setradio(self, radio):
+        self.__radio = radio
 
     def ocultar(self):
         print(f"El círculo {self.figura} está siendo ocultado")
@@ -92,11 +99,4 @@ class Circulos(Figuras):
         return ((3.1416) * (self.radio ** 2))
 
     def getInfo(self):
-        print(f"x = {self.x()}, y={self.y()}, visible = {self.visibiliada()}, figura = {self.figura()}, radio = {self.radio()}")
-        
-
-rectangulo1 = Rectangulos(x=0, y=0, visible=True, figura="Rectángulo 1", alto=5, ancho=3)
-print(f"Área del rectángulo: {rectangulo1.calcularArea()}")
-
-circulo1 = Circulos(x=2, y=2, visible=True, figura="Círculo 1", radio=2)
-print(f"Área del círculo: {circulo1.calcularArea()}")
+        print(f"x = {self.getx()}, y = {self.gety()}, visible = {self.getvisible()}, figura = {self.getfigura()}, radio = {self.getradio()}")
