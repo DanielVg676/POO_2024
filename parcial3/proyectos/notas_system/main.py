@@ -21,7 +21,6 @@ def menu_principal():
             apellidos=input("\t ¿Cuales son tus apellidos?: ")
             email=input("\t Ingresa tu email: ")
             password=getpass.getpass("\t Ingresa tu contraseña: ")
-            
             #Agregar codigo
             obj_usuario=usuario.Usuario(nombre,apellidos,email,password)
             resultado=obj_usuario.registrar()
@@ -30,23 +29,15 @@ def menu_principal():
             else:
                 print(f"\n\t ** Por favor intentalo de nuevo, no fue posible insertar el registro ** ...")    
             esperarTecla()
-
         elif opcion == '2':
             borrarPantalla()
             print("\n \t ..:: Inicio de Sesión ::.. ")     
             email=input("\t Ingresa tu E-mail: ")
             password=getpass.getpass("\t Ingresa tu Contraseña: ")
-            #Agregar codigo  
-            #Crear un objeto para utilizar los metodos 
-            obj_usuario=usuario.Usuario("","",email,password)
-            registro=obj_usuario.iniciar_sesion()
-
-            # print(registro)
-            # esperarTecla()
-
-            #Cuando existe el metodo estatico
-            # registro=usuario.Usuario.iniciar_sesion(email,password)
-            if len(registro)>0:
+            #Agregar codigo   
+            # obj_usuario=usuario.Usuario("","",email,password)
+            registro=usuario.Usuario.iniciar_sesion(email,password)
+            if registro:
                menu_notas(registro[0],registro[1],registro[2])
             else:
                print(f"\n\t ** Nombre de usuario y/o contraseña incorrectos, intentalo de nuevo ** ...")
