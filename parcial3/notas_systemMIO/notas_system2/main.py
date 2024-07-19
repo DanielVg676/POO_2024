@@ -21,7 +21,6 @@ def menu_principal():
             apellidos=input("\t ¿Cuales son tus apellidos?: ")
             email=input("\t Ingresa tu email: ")
             password=getpass.getpass("\t Ingresa tu contraseña: ")
-            
             #Agregar codigo
             obj_usuario=usuario.Usuario(nombre,apellidos,email,password)
             resultado=obj_usuario.registrar()
@@ -31,26 +30,31 @@ def menu_principal():
                 print(f"\n\t ** Por favor intentalo de nuevo, no fue posible insertar el registro ** ...")    
             esperarTecla()
 
+
         elif opcion == '2':
             borrarPantalla()
             print("\n \t ..:: Inicio de Sesión ::.. ")     
             email=input("\t Ingresa tu E-mail: ")
             password=getpass.getpass("\t Ingresa tu Contraseña: ")
-            #Agregar codigo  
-            #Crear un objeto para utilizar los metodos 
+            #Agregar codigo   
+
+            # Crear un objeto para utilizar los metodos
             obj_usuario=usuario.Usuario("","",email,password)
             registro=obj_usuario.iniciar_sesion()
 
-            # print(registro)
-            # esperarTecla()
-
-            #Cuando existe el metodo estatico
+            #Esta  linea de codigo se utiliza cuando se tiene un metodo estatico    
             # registro=usuario.Usuario.iniciar_sesion(email,password)
+
+            # print(registro)
+            # esperarTecla()   
+
             if len(registro)>0:
                menu_notas(registro[0],registro[1],registro[2])
             else:
                print(f"\n\t ** Nombre de usuario y/o contraseña incorrectos, intentalo de nuevo ** ...")
-               esperarTecla()          
+               esperarTecla()   
+
+
         elif opcion == '3':
             print("\n\t.. ¡Gracias Bye! ...")
             break
@@ -74,32 +78,38 @@ def menu_notas(usuario_id,nombre,apellidos):
                   """)
         opcion = input("\t\t Elige una opción: ")
 
+
+
         if opcion == '1':
             borrarPantalla()
             print(f"\n \t .:: Crear Nota ::. ")
             titulo=input("\tTitulo: ")
             descripcion=input("\tDescripción: ")
             #Agregar codigo
-            obj_nota=nota.Nota(usuario_id,titulo,descripcion)
+            obj_nota=nota.Nota(usuario_id, titulo, descripcion)
             resultado=obj_nota.crear()
+
             if resultado:
-                print(f"\n \t \t .:: La nota {titulo}, se creo correctamente ::. ")
+                print(f"...::: La nota {titulo} se creo correctamente :::...")
             else:
-                print(f"\n \t \t  ** No fue posible crear la nota {titulo}, por favor verifique ** ... ")    
+                print(f"** No fue posible crear la nota {titulo}, porfavor vurlva a intentar** ...")
             esperarTecla()
+
+
         elif opcion == '2':
             borrarPantalla()
-            #Agregar codigo  
             registro=nota.Nota.mostrar(usuario_id)
-            if len(registro)>0:
-               print(f"\n\t\t {nombre} {apellidos}, aquí estan tus notas: \n ")
-               num_nota=1
+            num_nota=1
+            if registro:
+               print(f"\n\t\t {nombre} {apellidos}, aqui estan tus notas:")
                for fila in registro:
-                 print(f"\t #Nota: {num_nota} \n \n ID: {fila[0]}.- Título: {fila[2]}     Fecha:{fila[4]} \n Descripción: {fila[3]} \n\n")
-                 num_nota+=1
+                    print(f"\t #Nota: {num_nota}, ID: {fila[0]} .- Titulo: {fila[2]},      Fecha: {fila[4]}")
             else:
-               print(f"\n\t ** El usuario {nombre} {apellidos} no tiene notas ** ...")
-            esperarTecla()
+               print(f"\n\t ** El usuario no tiene notas ** ...")
+               esperarTecla()
+            #Agregar codigo    
+
+
         elif opcion == '3':
             borrarPantalla()
             print(f"\n \t .:: {nombre} {apellidos}, vamos a modificar un Nota ::. \n")
@@ -107,23 +117,18 @@ def menu_notas(usuario_id,nombre,apellidos):
             titulo = input("\t Nuevo título: ")
             descripcion = input("\t Nueva descripción: ")
             #Agregar codigo
-            resultado=nota.Nota.actualizar(id,titulo,descripcion)
+            resultado=nota.Nota.actualizar(id, titulo,descripcion)
             if resultado:
-                print(f"\n \t \t .:: La Nota se actualizo con Exito ::. ")
+                print(f"\n\t\t La nota se actualizo correctamente ")
             else:
-               print(f"\n \t \t  ** No fue posible actualizar la nota, por favor verifique ** ... ")  
-            esperarTecla()      
+                print(f"\n\t\t ** No fue posible actualizar la nota, por favor verifique ** ...")
+            esperarTecla()
+
         elif opcion == '4':
             borrarPantalla()
             print(f"\n \t .:: {nombre} {apellidos}, vamos a borrar un Nota ::. \n")
             id = input("\t \t ID de la nota a eliminar: ")
             #Agregar codigo
-            resultado=nota.Nota.eliminar(id)
-            if resultado:
-                print(f"\n \t \t .:: La Nota se borro con Exito ::. ")
-            else:
-               print(f"\n \t \t  ** No fue posible borrar la nota, por favor verifique ** ... ")  
-            esperarTecla() 
         elif opcion == '5':
             break
         else:
